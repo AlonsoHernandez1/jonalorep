@@ -1,0 +1,105 @@
+The objective of this task is to implement a simple search engine that allows us to search for documents relevant to our searches.
+Documents relevant to the searches we perform.
+For this you will need to have the wikipedia.7z and stopwords.txt files used in the scheduled task 1.
+1. You must unzip the contents of the wikipedia.7z file. This will be our
+document repository.
+You must have executed the program created in scheduled task 1 to generate the binary files with the information found in the
+binary files with the information found in the different text files. 
+Before starting with the description of the task, we are going to introduce a series of concepts that will be used in the implementation.
+will be used in the implementation. 
+
+Inverted indexes
+In the field of information retrieval, an inverted index is a structure that stores a list of words (tokens) and relates each one to a list of documents.
+stores a list of words (tokens) and relates each one to a list of the documents where it appears.
+For example, consider the following three documents and their contents.
+Document 1: “En un lugar de la Mancha, de cuyo nombre no quiero acordarme”
+Document 2: “En un agujero en el suelo, vivía un hobbit”
+Document 3: “Era el mejor de los tiempos, era el peor de los tiempos”
+A simple inverted index of this documents would look as follows:
+Word/Document
+en 1, 2
+un 1, 2
+lugar 1
+de 1, 3
+la 1
+mancha 1
+cuyo 1
+nombre 1
+no 1
+quiero 1
+acordarme 1
+agujero 2
+...
+
+
+TF/IDF
+In the field of information retrieval, TF/IDF refers to a numerical statistic that represents how important a word is to a document that is part of an
+represents how important a word is to a document that is part of a document collection.
+collection of documents.
+Statistics allow us to compare different documents and know which one is more relevant for a specific word.
+a specific word.
+TF/IDF is composed of two more statistics: TF and IDF.
+The Term Frequency (TF) statistic represents how frequent a word is in the content of a document.
+a word is in the content of a document. The following formula is used to calculate it:
+TF(𝑝, 𝑑) =(number of times that the word 𝑝 appears in the document 𝑑)/(total number of words in document 𝑑)
+The Inverse Document Frequency (IDF) statistic represents how rare or common a word is.
+represents how rare or common a word is in the total document collection.
+IDF(𝑝) = log ((Total number of documents in the collection)/(Number of documents that contain the word 𝑝))
+Finally, TF/IDF is defined as:
+TF/IDF(𝑝, 𝑑) = TF(𝑝, 𝑑) ∗ IDF(𝑝).
+
+The Task
+You need to create a program using c++ that can run in two modes. To indicate the mode the
+program must receive as parameter:
+- index: tells the program to create an inverted index.
+- query: Tells the program to read an existing index and allow the user to run queries against the index.
+user to run queries against the index.
+Part 1) Creation of the inverted index.
+The program must receive as additional parameters:
+- the address where the Wikipedia documents are located (text and binary documents generated in task 1).
+generated in task 1).
+- the address where the files with the inverted index information will be stored.
+Your program must be able to create an inverted index from the binary files generated in the scheduled late
+generated in the scheduled task 1. For this you will need 2 data structures in memory.
+memory. You can use any structure your group deems convenient but it is recommended to use the std::map structure.
+use the std::map structure from the C++ standard library.
+The 2 memory structures are:
+1. A document index: Associates a unique identifier to each file. The files in
+this index are the original Wikipedia files (txt).
+
+Document ID/Document path
+1/ C:\Workspace-wikipedia-en-txt-text.txt
+2/ C:\Workspace-wikipedia-en-txt-essay.txt
+3/ C:\Workspace-wikipedia-en-txt-es-txt "Midas".txt
+
+2. The inverted index: It associates words with the identifiers of the documents that contain them.
+contain them. In addition to the document id, for each document the TF statistic described above must be calculated.
+TF statistic described above must be calculated for each document.
+Word / Document Id
+midas/ (DocId: 3, TF: 0.4)
+king/ (DocId: 1, TF: 0.2), (DocId: 3, TF: 0.01)
+name/ (DocId: 1, TF: 0.1), (DocId: 2, TF: 0.6)
+tokyo/ (DocId: 2, TF: 0.07)
+kingdom/ (DocId: 1, TF: 0.01), (DocId: 2, TF: 0.3), (DocId: TF:
+0.05)
+walls/ (DocId: 1 TF: 0.15)
+city/ (DocId: 1 TF: 0.7), (DocId: 2 TF: 0.03)
+
+Your program should go through the Wikipedia file folder looking for the binary files created in the scheduled evening 1.
+When it finds a file it should:
+- Add the name of the original file (txt) to the file index (use the full path to the .txt file from which you built the contents of the binary file.
+.txt file with which you built the content of the binary file).
+- Read the contents of the file to a list in memory. For this you can use the classes
+std::List, std::vector or any other you find useful.
+- Add the words from the binary file to the inverted index. If the word is already present
+in the index just add the file information to the entry for that word.
+- Calculate the TF statistic for each word. For this remember that the binary file
+has a list of the words in the original file. Based on this you can calculate
+o How many times a word appears in file.
+o The total number of words in the file (add up all the position increments calculated in task 1).
+calculated in task 1)
+- Remember that you must add the word 1 time only, even if it appears multiple times in the file.
+the file.
+Once you have finished reading all the binary files, you must write 2 new binary files to the location defined by task 1.
+binary files in the place defined by the second parameter received by the program. In a file
+you must write the contents of the document index in one file and the contents of the inverted index in the other.
