@@ -1,0 +1,24 @@
+Download the wikipedia.7z and stopwords.txt files from virtual media to your computer.
+The wikipedia.7z file contains a partial backup of the wikipedia articles. In total it contains
+400,362 plain text files. Each file is a different article.
+The stopwords.txt file contains a list of common Spanish language words.
+The objective of the task is to analyze the content of each text file and create a description of each file that can be used in projects.
+each file that can be used in future projects.
+Text analysis
+You must open each of the files and process its content to obtain each of the words contained in it.
+contained in it. You should break down the words into blanks, line breaks and punctuation.
+Then clean up the obtained word list so that:
+Discard all words composed entirely of punctuation marks or numbers.
+Discard all words that appear in the stopwords.txt file.
+Convert all words to lowercase.
+Remove all accents and n's from words.
+Discard all single-letter words.
+
+Calisto (del griego ????????) es un satÂ´elite del planeta JÂ´upiter, descubierto en
+1610 por Galileo Galilei. Su diÂ´ametro es de aproximadamente 4.900 km, lo que le
+convierte en la tercera luna mÂ´as grande del Sistema Solar, con el mismo tama~no
+que el planeta Mercurio.
+produces the next list of words
+calisto Â· griego Â· satelite Â· planeta Â· jupiter Â· descubierto Â· galileo Â· galilei
+Â· diametro Â· aproximadamente Â· km Â· convierte Â· tercera Â· luna Â· mÂ´as Â· grande Â· sistema
+Â· solar Â· mismo Â· tamano Â· planeta
