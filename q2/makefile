@@ -1,3 +1,14 @@
+#********** Copyright © Alonso Hernandez & Jonathon Bell. All rights reserved.
+#**
+#**
+#**  Version : $Header:$
+#**
+#**
+#**  Purpose : Make file for a basic C++ executable.
+#**
+#**
+#*****************************************************************************
+
 # C++ Compiler
 XC=g++
 
@@ -9,7 +20,7 @@ INC_DIR=include
 
 # Compilation flags
 INCLUDES= -I include -I src -I libs
-FLAGS= $(strip -g -std=c++11 -Wall -Wextra $(INCLUDES))
+FLAGS=    $(strip -g -std=c++20 -Wall -Wextra $(INCLUDES))
 
 # Get list of all .cpp files in SRC_DIR
 SOURCE_FILES=$(wildcard $(SRC_DIR)/*.cpp)
@@ -24,5 +35,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 	mkdir -p $(@D)
 	$(XC) $(FLAGS) -c $< -o $@
 clean:
-	rm -r $(OBJ_DIR)
-	rm -r $(BIN_DIR)
+	@rm -rf $(OBJ_DIR)
+	@rm -rf $(BIN_DIR)
+
+#*****************************************************************************
