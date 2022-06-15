@@ -8,7 +8,7 @@ SRC_DIR=src
 INC_DIR=include
 
 # Compilation flags
-INCLUDES= -I include -I src -I libs
+INCLUDES= -I include -I src -I libs 
 FLAGS= $(strip -g -std=c++11 -Wall -Wextra $(INCLUDES))
 
 # Get list of all .cpp files in SRC_DIR

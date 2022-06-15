@@ -14,6 +14,8 @@
 
 #include <iostream>
 #include <cstring>
+#include "DocumentRepositoryProcessor.h"
+
 //****************************************************************************
 
 int main(int argc, const char* argv[])
@@ -38,6 +40,9 @@ int main(int argc, const char* argv[])
     std::cout << "bad argument: wanted one of {--index, --query} but got  " <<argv[i]<< std::endl;
     return 1;
   }
+
+  DocumentRepositoryProcessor docRepoProcessor("c:\\Users\\Alon\\Downloads\\wikipedia" , "../etc/stopwords.txt");
+  docRepoProcessor.process();
   std::cout << "hello alonso " << std::endl;
 
   return 0;
