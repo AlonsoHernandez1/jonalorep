@@ -9,9 +9,6 @@
 #**
 #*****************************************************************************
 
-# C++ Compiler
-XC=g++
-
 # Directories
 OBJ_DIR=build
 BIN_DIR=bin
@@ -30,10 +27,12 @@ OBJECT_FILES=$(SOURCE_FILES:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 
 $(BIN_DIR)/program.exe: $(OBJECT_FILES)
 	mkdir -p $(@D)
-	$(XC) $(OBJECT_FILES) -o $(BIN_DIR)/program.exe
+	g++ $(OBJECT_FILES) -o $(BIN_DIR)/program.exe
+
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 	mkdir -p $(@D)
-	$(XC) $(FLAGS) -c $< -o $@
+	g++ $(FLAGS) -c $< -o $@
+
 clean:
 	@rm -rf $(OBJ_DIR)
 	@rm -rf $(BIN_DIR)

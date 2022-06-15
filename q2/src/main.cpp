@@ -17,6 +17,14 @@
 
 //****************************************************************************
 
+enum Action
+{
+  a_tokenize,
+  a_index,
+  a_query,
+} g_action = a_tokenize;
+
+
 int main(int argc, const char* argv[])
 {
   if (argc < 2)
@@ -32,16 +40,22 @@ int main(int argc, const char* argv[])
 
   for (auto i = 1; i != argc; ++i)
   {
+    if (strcmp(argv[i], "--tokenize") == 0)
+    {
+      g_action = a_tokenize;
+      continue;
+    }
+
     if (strcmp(argv[i], "--index") == 0)
     {
-        //set index mode
-        continue;
+      g_action = a_index;
+      continue;
     }
 
     if (strcmp(argv[i], "--query") == 0)
     {
-        //set query mode
-        continue;
+      g_action = a_query;
+      continue;
     }
 
     std::cout << "bad option: wanted one of {--index, --query} but got '"
